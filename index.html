@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone NF | Conectamos tu mundo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES DE MARCA (Basadas en tus imágenes) --- */
+        :root {
+            --bg-premium: #f5f5f7;
+            --text-dark: #1d1d1f;
+            --text-gray: #86868b;
+            --accent-blue: #0071e3;
+            --accent-blue-hover: #0077ed;
+            --white: #ffffff;
+            --font-titles: 'Poppins', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- ESTILOS GENERALES Y RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-premium);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-titles);
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-blue-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- HEADER / NAVEGACIÓN --- */
+        header {
+            background-color: rgba(245, 245, 247, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: var(--font-titles);
+            font-size: 22px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Placeholder cuadrado para tu logo (puedes reemplazar la imagen localmente) */
+        .logo-img {
+            width: 35px;
+            height: 35px;
+            background-color: var(--text-dark);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .nav-menu a:hover {
+            opacity: 1;
+            color: var(--accent-blue);
+        }
+
+        /* --- SECCIÓN INICIO (HERO) --- */
+        #inicio {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(0,113,227,0.05) 0%, transparent 60%);
+        }
+
+        .hero-tagline {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        /* --- SECCIÓN NOSOTROS --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+            font-size: 16px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-box h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* --- SECCIÓN SERVICIOS --- */
+        #servicios {
+            background-color: #ffffff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-premium);
+            padding: 35px;
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--accent-blue);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* --- SECCIÓN CONTACTO Y FORMULARIO --- */
+        .contact-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background-color: var(--bg-premium);
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            background-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-gray);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            z-index: 999;
+            font-size: 30px;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            background-color: #20ba5a;
+        }
+
+        /* --- RESPONSIVE (MÓVILES) --- */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none; /* Simplificado para la versión inicial */
+            }
+            .hero-title {
+                font-size: 36px;
+            }
+            .hero-subtitle {
+                font-size: 16px;
+            }
+            .contact-wrapper {
+                padding: 30px 20px;
+            }
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-img"></div> iPhone NF
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="inicio">
+        <div class="container">
+            <p class="hero-tagline">Conectamos tu mundo</p>
+            <h1 class="hero-title">Experiencia Apple Premium<br>A Tu Alcance</h1>
+            <p class="hero-subtitle">Especialistas en la venta, servicio técnico y asesoramiento personalizado para que tu ecosistema iPhone rinda al máximo nivel.</p>
+            <a href="#contacto" class="btn">Cotizar mi iPhone / Servicio</a>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <div class="container">
+            <h2 class="section-title">Nosotros</h2>
+            <p class="section-subtitle">Pasión por la tecnología y el compromiso de mantenerte siempre comunicado.</p>
+            
+            <div class="about-grid">
+                <div class="about-box">
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>En <strong>iPhone NF</strong> nos dedicamos a conectar tu mundo a través de soluciones móviles de alta calidad. Nacimos con la misión de ofrecer un servicio transparente, seguro y de nivel premium para todos los usuarios de la manzana.</p>
+                </div>
+                <div class="about-box">
+                    <h3>Nuestro Compromiso</h3>
+                    <p>Ya sea que busques actualizar tu equipo o reparar el actual, te garantizamos repuestos seleccionados, atención personalizada y una experiencia ágil sin complicaciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Soluciones diseñadas a la medida de tus necesidades tecnológicas.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Venta de Equipos</h3>
+                    <p>Modelos nuevos y seminuevos certificados con garantía. Encontrá el iPhone perfecto para vos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Servicio Técnico</h3>
+                    <p>Cambios de módulo, batería y reparaciones con altos estándares de precisión y cuidado.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Planes Canje / Renovación</h3>
+                    <p>Tomamos tu equipo actual en forma de pago para que accedas a tu próximo dispositivo fácilmente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Accesorios Premium</h3>
+                    <p>Fundas, vidrios templados y cargadores homologados para proteger lo que más querés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Solicitá tu Cotización</h2>
+            <p class="section-subtitle">Completá el formulario y recibirás un presupuesto automático en tu casilla de correo.</p>
+            
+            <div class="contact-wrapper">
+                <form action="https://api.staticforms.xyz/process" method="post">
+                    
+                    <input type="hidden" name="accessKey" value="TU-CLAVE-AQUÍ-DE-STATICFORMS">
+                    <input type="hidden" name="redirectTo" value="https://tuweb.com/gracias.html">
+                    
+                    <div class="form-group">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Ej: juan@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Teléfono / WhatsApp</label>
+                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="Ej: +54 9 11 ...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">¿Qué servicio necesitás?</label>
+                        <select name="subject" id="subject" class="form-control" required>
+                            <option value="" disabled selected>Seleccioná una opción</option>
+                            <option value="Cotización de iPhone Nuevo">Comprar un iPhone</option>
+                            <option value="Reparación Técnica / Soporte">Servicio Técnico (Pantalla, Batería, etc)</option>
+                            <option value="Plan Canje de Equipo">Plan Canje (Entregar mi usado)</option>
+                            <option value="Otro">Otro Tipo de Consulta</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Detalles de tu Equipo (Modelo, GB, falla o lo que busques)</label>
+                        <textarea name="message" id="message" rows="4" class="form-control" placeholder="Ej: Tengo un iPhone 12 de 128GB para entregar, o busco presupuesto para cambio de batería de iPhone 11..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit">Enviar Cotización Directa</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 iPhone NF. Todos los derechos reservados.</p>
+            <p style="opacity: 0.5;">Conectamos tu mundo &bull; Diseñado con estilo Premium</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5491100000000?text=Hola%20iPhone%20NF!%20Quiero%20hacer%20una%20consulta%20sobre%20un%20servicio%20o%20equipo." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.48 2.01 7.79l-2.01 7.345 7.513-1.972c2.242 1.192 4.795 1.837 7.487 1.837 8.837 0 16-7.163 16-16s-7.163-16-16-16zm7.79 22.112c-.318.897-1.575 1.637-2.522 1.842-.647.138-1.493.245-2.368-.035-.515-.165-1.168-.415-2.002-.765-3.535-1.478-5.818-5.078-5.995-5.312-.175-.235-1.425-1.898-1.425-3.623 0-1.725.9-2.573 1.22-2.925.318-.35.7-.437.933-.437.233 0 .467.003.668.012.21.01.492-.04.77.625.285.683.972 2.373 1.055 2.547.085.175.142.378.025.613-.117.235-.175.38-.348.582-.175.203-.365.453-.523.608-.175.173-.358.363-.155.712.203.348.903 1.49 1.938 2.41 1.328 1.183 2.453 1.552 2.803 1.725.352.173.558.145.767-.095.208-.242.9-1.047 1.142-1.407.242-.36.483-.298.813-.175.33.123 2.1.99 2.46 1.173.36.183.6.273.687.423.088.15.088.872-.23 1.77z"/>
+        </svg>
+    </a>
+
+</body>
+</html>
