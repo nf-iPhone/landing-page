@@ -3,489 +3,1229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iPhone NF — Venta, servicio técnico y asesoramiento premium para tu ecosistema Apple.">
     <title>iPhone NF | Conectamos tu mundo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* --- VARIABLES DE MARCA (Basadas en tus imágenes) --- */
+        /* ── Variables de marca ── */
         :root {
-            --bg-premium: #f5f5f7;
-            --text-dark: #1d1d1f;
-            --text-gray: #86868b;
-            --accent-blue: #0071e3;
-            --accent-blue-hover: #0077ed;
-            --white: #ffffff;
-            --font-titles: 'Poppins', sans-serif;
-            --font-body: 'Montserrat', sans-serif;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
+            --bg: #f5f5f7;
+            --bg-white: #ffffff;
+            --text: #1d1d1f;
+            --text-muted: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --accent-soft: rgba(0, 113, 227, 0.08);
+            --border: rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.08);
+            --radius-sm: 12px;
+            --radius-md: 18px;
+            --radius-lg: 24px;
+            --radius-pill: 980px;
+            --font: 'Poppins', sans-serif;
+            --nav-h: 52px;
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition: 0.35s var(--ease);
         }
 
-        /* --- ESTILOS GENERALES Y RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        /* ── Reset & base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 24px); }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--bg-premium);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            font-weight: 400;
+            font-size: 16px;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        h1, h2, h3 {
-            font-family: var(--font-titles);
-            font-weight: 700;
-        }
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+        h1 { font-size: clamp(2.5rem, 6vw, 4.25rem); font-weight: 800; }
+        h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+        h3 { font-size: 1.25rem; font-weight: 600; }
+        p { color: var(--text-muted); }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
+        a { text-decoration: none; color: inherit; transition: color var(--transition), opacity var(--transition); }
+        img { max-width: 100%; display: block; }
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 clamp(20px, 4vw, 40px);
         }
 
+        /* ── Botones CTA ── */
         .btn {
-            display: inline-block;
-            background-color: var(--accent-blue);
-            color: var(--white);
-            padding: 14px 28px;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: var(--radius-pill);
+            font-family: var(--font);
             font-weight: 600;
             font-size: 15px;
             border: none;
             cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 4px 16px rgba(0, 113, 227, 0.25);
         }
-
         .btn:hover {
-            background-color: var(--accent-blue-hover);
+            background: var(--accent-hover);
             transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 113, 227, 0.3);
+        }
+        .btn:active { transform: translateY(0); }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--accent);
+            box-shadow: none;
+            border: 1.5px solid var(--accent);
+        }
+        .btn-ghost:hover {
+            background: var(--accent-soft);
+            box-shadow: none;
         }
 
-        /* --- HEADER / NAVEGACIÓN --- */
-        header {
-            background-color: rgba(245, 245, 247, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+        .btn-sm { padding: 10px 22px; font-size: 14px; }
+
+        /* ── Navbar sticky con blur (UX: navegación siempre accesible) ── */
+        .navbar {
             position: fixed;
             top: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: var(--nav-h);
+            background: rgba(245, 245, 247, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+        }
+        /* Estado al hacer scroll: mayor contraste y separación visual */
+        .navbar.scrolled {
+            background: rgba(245, 245, 247, 0.92);
+            border-bottom-color: var(--border);
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-container {
+        .nav-inner {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            height: 70px;
+            justify-content: space-between;
+            height: 100%;
+            gap: 24px;
         }
 
         .logo {
-            font-family: var(--font-titles);
-            font-size: 22px;
-            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text);
+            flex-shrink: 0;
         }
-
-        /* Placeholder cuadrado para tu logo (puedes reemplazar la imagen localmente) */
-        .logo-img {
-            width: 35px;
-            height: 35px;
-            background-color: var(--text-dark);
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: var(--text);
             border-radius: 8px;
-            display: inline-block;
+            display: grid;
+            place-items: center;
         }
+        .logo-mark svg { width: 18px; height: 18px; }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
-            gap: 32px;
+            align-items: center;
+            gap: 4px;
             list-style: none;
         }
-
-        .nav-menu a {
+        .nav-links a {
+            padding: 8px 16px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--text-dark);
-            opacity: 0.8;
+            color: var(--text);
+            border-radius: var(--radius-pill);
+            transition: background var(--transition), color var(--transition);
         }
+        .nav-links a:hover { background: rgba(0, 0, 0, 0.04); color: var(--accent); }
 
-        .nav-menu a:hover {
-            opacity: 1;
-            color: var(--accent-blue);
+        .nav-cta { margin-left: 8px; }
+
+        /* Menú móvil */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--text);
         }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.active span:nth-child(2) { opacity: 0; }
+        .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-        /* --- SECCIÓN INICIO (HERO) --- */
-        #inicio {
-            padding-top: 160px;
-            padding-bottom: 100px;
+        /* ── Hero: impacto visual tipo banner reseller ── */
+        .hero {
+            padding: calc(var(--nav-h) + 80px) 0 100px;
             text-align: center;
-            background: radial-gradient(circle at top, rgba(0,113,227,0.05) 0%, transparent 60%);
+            position: relative;
+            overflow: hidden;
         }
-
-        .hero-tagline {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-gray);
-            margin-bottom: 16px;
-            font-weight: 600;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 113, 227, 0.07) 0%, transparent 70%);
+            pointer-events: none;
         }
+        .hero-content { position: relative; max-width: 780px; margin: 0 auto; }
 
-        .hero-title {
-            font-size: 52px;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
-        }
-
-        .hero-subtitle {
-            font-size: 20px;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            font-weight: 400;
-        }
-
-        /* --- SECCIÓN NOSOTROS --- */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 60px;
-            font-size: 16px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+        .hero-badge {
+            display: inline-flex;
             align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
-        .about-box {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: var(--shadow);
+        .hero h1 {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
         }
 
-        .about-box h3 {
-            font-size: 24px;
+        /* Barra de confianza bajo el hero */
+        .trust-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 72px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+        .trust-item svg { color: var(--accent); flex-shrink: 0; }
+
+        /* ── Secciones genéricas ── */
+        section { padding: clamp(72px, 10vw, 120px) 0; }
+
+        .section-header {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 56px;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+        .section-header h2 { color: var(--text); margin-bottom: 14px; }
+        .section-header p { font-size: 17px; }
+
+        /* ── Banner promocional (inspirado en Maxim Store) ── */
+        .promo-banner {
+            background: var(--text);
+            color: #fff;
+            border-radius: var(--radius-lg);
+            padding: clamp(40px, 6vw, 64px);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 32px;
+            overflow: hidden;
+            position: relative;
+        }
+        .promo-banner::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .promo-banner h2 { color: #fff; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px; }
+        .promo-banner p { color: rgba(255,255,255,0.65); font-size: 15px; max-width: 440px; }
+        .promo-banner .btn { position: relative; z-index: 1; white-space: nowrap; }
+
+        /* ── Grilla de productos (inspirado en iShop / Mac Center) ── */
+        .products-section { background: var(--bg-white); }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg);
+            border-radius: var(--radius-md);
+            padding: 32px 28px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        /* Hover: indica que la tarjeta es explorables (modelo + variantes) */
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(0, 113, 227, 0.2);
+        }
+        .product-card:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+        .product-card-visual {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            margin-bottom: 20px;
+            border-radius: var(--radius-sm);
+        }
+        .product-card-visual::-webkit-scrollbar { display: none; }
+        .product-card-visual img,
+        .product-card-visual svg,
+        .product-card-visual .product-visual-fallback {
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            width: 100%;
+            min-width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .product-card-visual img {
+            border-radius: var(--radius-sm);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter var(--transition);
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+        }
+        .product-card:hover .product-card-visual img {
+            transform: scale(1.06);
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.12));
+        }
+        .product-card-visual .product-visual-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-card-visual svg { opacity: 0.85; transition: transform var(--transition); }
+        .product-card:hover .product-card-visual:not(:has(img)) svg { transform: scale(1.05); }
+
+        .product-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            margin-bottom: 10px;
+        }
+        .product-card h3 { color: var(--text); margin-bottom: 8px; }
+        .product-card .product-desc { font-size: 14px; margin-bottom: 14px; line-height: 1.55; }
+
+        /* Variantes disponibles — estilo pill minimalista Apple */
+        .product-versions-hint {
+            font-family: var(--font);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+        .product-card:hover .product-versions-hint { color: var(--accent); }
+
+        .product-versions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
             margin-bottom: 16px;
         }
-
-        /* --- SECCIÓN SERVICIOS --- */
-        #servicios {
-            background-color: #ffffff;
+        .product-version-pill {
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: color var(--transition), background var(--transition), border-color var(--transition);
+        }
+        .product-card:hover .product-version-pill {
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: rgba(0, 113, 227, 0.12);
         }
 
+        .product-card-footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .product-card-cta {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(4px);
+            cursor: pointer;
+            transition: opacity var(--transition), transform var(--transition);
+        }
+        .product-card:hover .product-card-cta {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 18px;
+        }
+        .product-price span { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+
+        /* ── Otros productos (complemento sutil al catálogo iPhone) ── */
+        .other-products {
+            text-align: center;
+            margin-top: clamp(48px, 6vw, 72px);
+            padding-top: clamp(32px, 4vw, 48px);
+            border-top: 1px solid var(--border);
+        }
+        .other-products-text {
+            font-family: var(--font);
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 400;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .other-products-links {
+            display: inline;
+        }
+        .other-product-link {
+            font-family: var(--font);
+            font-size: inherit;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color var(--transition);
+            cursor: pointer;
+        }
+        .other-product-link:hover { color: var(--accent); }
+        .other-products-sep {
+            color: var(--text-muted);
+            opacity: 0.45;
+            margin: 0 6px;
+            user-select: none;
+        }
+
+        /* ── Servicios: tarjetas con iconos SVG ── */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
         }
 
         .service-card {
-            background-color: var(--bg-premium);
-            padding: 35px;
-            border-radius: 20px;
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.02);
+            background: var(--bg-white);
+            padding: 36px 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: transform var(--transition), box-shadow var(--transition);
         }
-
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
         }
-
+        .plan-canje-trigger { cursor: pointer; }
         .service-icon {
-            font-size: 32px;
+            width: 48px;
+            height: 48px;
+            background: var(--accent-soft);
+            border-radius: var(--radius-sm);
+            display: grid;
+            place-items: center;
             margin-bottom: 20px;
-            color: var(--accent-blue);
+            color: var(--accent);
+        }
+        .service-card h3 { color: var(--text); margin-bottom: 10px; }
+        .service-card p { font-size: 14px; line-height: 1.6; }
+
+        /* ── Nosotros ── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+        }
+        .about-card {
+            background: var(--bg-white);
+            padding: 40px 36px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: box-shadow var(--transition);
+        }
+        .about-card:hover { box-shadow: var(--shadow-md); }
+        .about-card h3 { color: var(--text); margin-bottom: 14px; }
+        .about-card p { font-size: 15px; line-height: 1.7; }
+        .about-card strong { color: var(--text); font-weight: 600; }
+
+        /* ── Contacto ── */
+        .contact-section { background: var(--bg-white); }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: start;
         }
 
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
+        .contact-info h2 { margin-bottom: 16px; color: var(--text); }
+        .contact-info > p { margin-bottom: 32px; font-size: 15px; }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .contact-detail-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-soft);
+            border-radius: var(--radius-sm);
+            display: grid;
+            place-items: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .contact-detail strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+        .contact-detail span { font-size: 14px; color: var(--text-muted); }
+
+        .contact-form-wrap {
+            background: var(--bg);
+            padding: clamp(32px, 5vw, 48px);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
         }
 
-        .service-card p {
-            color: var(--text-gray);
-            font-size: 14px;
-        }
-
-        /* --- SECCIÓN CONTACTO Y FORMULARIO --- */
-        .contact-wrapper {
-            max-width: 650px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 50px;
-            border-radius: 28px;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
+        .form-group { margin-bottom: 20px; }
         .form-group label {
             display: block;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
             margin-bottom: 8px;
-            color: var(--text-dark);
         }
-
         .form-control {
             width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(0,0,0,0.1);
-            background-color: var(--bg-premium);
-            font-family: var(--font-body);
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            font-family: var(--font);
             font-size: 15px;
-            color: var(--text-dark);
-            transition: var(--transition);
+            color: var(--text);
+            transition: border-color var(--transition), box-shadow var(--transition);
         }
-
+        .form-control::placeholder { color: #aeaeb2; }
         .form-control:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            background-color: var(--white);
-            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--accent-soft);
         }
-
         select.form-control {
             appearance: none;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 16px center;
-            background-size: 16px;
+            background-position: right 14px center;
+            padding-right: 40px;
         }
+        textarea.form-control { resize: vertical; min-height: 110px; }
+        .btn-submit { width: 100%; margin-top: 8px; }
 
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            font-size: 16px;
-        }
-
-        /* --- FOOTER --- */
+        /* ── Footer ── */
         footer {
-            background-color: var(--text-dark);
-            color: var(--text-gray);
-            padding: 40px 0;
-            text-align: center;
-            font-size: 13px;
+            background: var(--text);
+            color: var(--text-muted);
+            padding: 48px 0 32px;
         }
-
-        footer p {
-            margin-bottom: 8px;
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            margin-bottom: 24px;
         }
+        .footer-logo { font-weight: 700; font-size: 16px; color: #fff; }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); }
+        .footer-links a:hover { color: #fff; }
+        .footer-copy { text-align: center; font-size: 12px; opacity: 0.6; }
 
-        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        /* ── WhatsApp flotante ── */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            bottom: 28px;
+            right: 28px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
             z-index: 999;
-            font-size: 30px;
-            transition: var(--transition);
+            transition: transform var(--transition), box-shadow var(--transition);
         }
-
         .whatsapp-float:hover {
-            transform: scale(1.1) rotate(5deg);
-            background-color: #20ba5a;
+            transform: scale(1.08);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45);
         }
 
-        /* --- RESPONSIVE (MÓVILES) --- */
+        /* ── Animaciones de entrada (UX: contenido aparece progresivamente) ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .contact-layout { grid-template-columns: 1fr; }
+            .promo-banner { grid-template-columns: 1fr; text-align: center; }
+            .promo-banner p { margin: 0 auto; }
+        }
+
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none; /* Simplificado para la versión inicial */
+            .nav-toggle { display: block; }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-h);
+                left: 0;
+                right: 0;
+                background: rgba(245, 245, 247, 0.97);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 16px 20px 24px;
+                gap: 4px;
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-110%);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform var(--transition), opacity var(--transition);
             }
-            .hero-title {
-                font-size: 36px;
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
             }
-            .hero-subtitle {
-                font-size: 16px;
-            }
-            .contact-wrapper {
-                padding: 30px 20px;
-            }
-            section {
-                padding: 60px 0;
-            }
+            .nav-links a { width: 100%; padding: 14px 16px; }
+            .nav-cta { margin: 8px 0 0; width: 100%; text-align: center; }
+
+            .trust-bar { gap: 20px; }
+            .hero { padding-bottom: 72px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <div class="logo-img"></div> iPhone NF
-            </div>
-            <ul class="nav-menu">
+    <!-- Navbar sticky con blur -->
+    <nav class="navbar" id="navbar" aria-label="Navegación principal">
+        <div class="container nav-inner">
+            <a href="#inicio" class="logo" aria-label="iPhone NF — Inicio">
+                <!-- Reemplazar .logo-mark por <img src="/assets/logo.svg" alt="iPhone NF"> cuando tengas el archivo -->
+                <span class="logo-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#f5f5f7" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </span>
+                iPhone NF
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#productos">Productos</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#contacto" class="btn btn-sm nav-cta">Cotizar</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
-    <section id="inicio">
-        <div class="container">
-            <p class="hero-tagline">Conectamos tu mundo</p>
-            <h1 class="hero-title">Experiencia Apple Premium<br>A Tu Alcance</h1>
-            <p class="hero-subtitle">Especialistas en la venta, servicio técnico y asesoramiento personalizado para que tu ecosistema iPhone rinda al máximo nivel.</p>
-            <a href="#contacto" class="btn">Cotizar mi iPhone / Servicio</a>
-        </div>
-    </section>
+    <!-- Hero de alto impacto -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content fade-in">
+            <span class="hero-badge">Conectamos tu mundo</span>
+            <h1>Experiencia Apple Premium<br>A Tu Alcance</h1>
+            <p class="hero-subtitle">Especialistas en venta, servicio técnico y asesoramiento personalizado para que tu ecosistema iPhone rinda al máximo nivel.</p>
+            <div class="hero-actions">
+                <a href="#contacto" class="btn">Cotizar mi iPhone</a>
+                <a href="#productos" class="btn btn-ghost">Ver productos</a>
+            </div>
 
-    <section id="nosotros">
-        <div class="container">
-            <h2 class="section-title">Nosotros</h2>
-            <p class="section-subtitle">Pasión por la tecnología y el compromiso de mantenerte siempre comunicado.</p>
-            
-            <div class="about-grid">
-                <div class="about-box">
-                    <h3>¿Quiénes Somos?</h3>
-                    <p>En <strong>iPhone NF</strong> nos dedicamos a conectar tu mundo a través de soluciones móviles de alta calidad. Nacimos con la misión de ofrecer un servicio transparente, seguro y de nivel premium para todos los usuarios de la manzana.</p>
+            <div class="trust-bar">
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    Garantía incluida
                 </div>
-                <div class="about-box">
-                    <h3>Nuestro Compromiso</h3>
-                    <p>Ya sea que busques actualizar tu equipo o reparar el actual, te garantizamos repuestos seleccionados, atención personalizada y una experiencia ágil sin complicaciones.</p>
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Respuesta en 24 hs
+                </div>
+                <div class="trust-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Equipos certificados
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Banner promocional -->
+    <section style="padding-top: 0; padding-bottom: clamp(72px, 10vw, 100px);">
+        <div class="container fade-in">
+            <div class="promo-banner">
+                <div>
+                    <h2>Plan Canje disponible</h2>
+                    <p>Entregá tu iPhone actual y accedé al modelo que querés con la mejor valuación del mercado.</p>
+                </div>
+                <a href="#contacto" class="btn plan-canje-trigger">Consultar canje</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grilla de productos destacados -->
+    <section class="products-section" id="productos">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-label">Catálogo</span>
+                <h2>Catálogo iPhone</h2>
+                <p>Desde el iPhone 11 hasta el 17. Cada modelo incluye todas sus versiones disponibles.</p>
+            </div>
+
+            <div class="products-grid" id="productsGrid" role="list">
+                <!-- Renderizado dinámico desde js/products.js -->
+            </div>
+
+            <!-- Complemento de ecosistema: sin tarjetas ni precios -->
+            <div class="other-products fade-in">
+                <p class="other-products-text">
+                    ¿Buscás complementar tu ecosistema? Consultanos también por:
+                    <span class="other-products-links">
+                        <a href="#contacto" class="other-product-link" data-product="Apple Watch">Apple Watch</a><span class="other-products-sep" aria-hidden="true">•</span><a href="#contacto" class="other-product-link" data-product="AirPods">AirPods</a><span class="other-products-sep" aria-hidden="true">•</span><a href="#contacto" class="other-product-link" data-product="MacBook">MacBook</a><span class="other-products-sep" aria-hidden="true">•</span><a href="#contacto" class="other-product-link" data-product="PlayStation">PlayStation</a>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
     <section id="servicios">
         <div class="container">
-            <h2 class="section-title">Nuestros Servicios</h2>
-            <p class="section-subtitle">Soluciones diseñadas a la medida de tus necesidades tecnológicas.</p>
-            
+            <div class="section-header fade-in">
+                <span class="section-label">Servicios</span>
+                <h2>Todo lo que necesitás</h2>
+                <p>Soluciones diseñadas a la medida de tus necesidades tecnológicas.</p>
+            </div>
+
             <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
+                <article class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+                    </div>
                     <h3>Venta de Equipos</h3>
                     <p>Modelos nuevos y seminuevos certificados con garantía. Encontrá el iPhone perfecto para vos.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🛠️</div>
+                </article>
+
+                <article class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
                     <h3>Servicio Técnico</h3>
                     <p>Cambios de módulo, batería y reparaciones con altos estándares de precisión y cuidado.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔄</div>
-                    <h3>Planes Canje / Renovación</h3>
+                </article>
+
+                <article class="service-card fade-in plan-canje-trigger" role="button" tabindex="0" aria-label="Consultar Plan Canje">
+                    <div class="service-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    </div>
+                    <h3>Plan Canje</h3>
                     <p>Tomamos tu equipo actual en forma de pago para que accedas a tu próximo dispositivo fácilmente.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
+                </article>
+
+                <article class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
                     <h3>Accesorios Premium</h3>
                     <p>Fundas, vidrios templados y cargadores homologados para proteger lo que más querés.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <section id="contacto">
+    <!-- Nosotros -->
+    <section id="nosotros" style="background: var(--bg-white);">
         <div class="container">
-            <h2 class="section-title">Solicitá tu Cotización</h2>
-            <p class="section-subtitle">Completá el formulario y recibirás un presupuesto automático en tu casilla de correo.</p>
-            
-            <div class="contact-wrapper">
-                <form action="https://api.staticforms.xyz/process" method="post">
-                    
-                    <input type="hidden" name="accessKey" value="TU-CLAVE-AQUÍ-DE-STATICFORMS">
-                    <input type="hidden" name="redirectTo" value="https://tuweb.com/gracias.html">
-                    
-                    <div class="form-group">
-                        <label for="name">Nombre Completo</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Ej: Juan Pérez" required>
-                    </div>
+            <div class="section-header fade-in">
+                <span class="section-label">Nosotros</span>
+                <h2>Pasión por Apple</h2>
+                <p>Compromiso con la tecnología y mantenerte siempre comunicado.</p>
+            </div>
 
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Ej: juan@email.com" required>
-                    </div>
+            <div class="about-grid">
+                <article class="about-card fade-in">
+                    <h3>¿Quiénes Somos?</h3>
+                    <p>En <strong>iPhone NF</strong> nos dedicamos a conectar tu mundo a través de soluciones móviles de alta calidad. Nacimos con la misión de ofrecer un servicio transparente, seguro y de nivel premium para todos los usuarios de la manzana.</p>
+                </article>
+                <article class="about-card fade-in">
+                    <h3>Nuestro Compromiso</h3>
+                    <p>Ya sea que busques actualizar tu equipo o reparar el actual, te garantizamos repuestos seleccionados, atención personalizada y una experiencia ágil sin complicaciones.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
-                    <div class="form-group">
-                        <label for="phone">Teléfono / WhatsApp</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="Ej: +54 9 11 ...">
-                    </div>
+    <!-- Contacto con layout de dos columnas -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="contact-layout">
+                <div class="contact-info fade-in">
+                    <span class="section-label">Contacto</span>
+                    <h2>Solicitá tu Cotización</h2>
+                    <p>Completá el formulario y te redirigimos a WhatsApp con tu solicitud lista para enviar.</p>
 
-                    <div class="form-group">
-                        <label for="subject">¿Qué servicio necesitás?</label>
-                        <select name="subject" id="subject" class="form-control" required>
-                            <option value="" disabled selected>Seleccioná una opción</option>
-                            <option value="Cotización de iPhone Nuevo">Comprar un iPhone</option>
-                            <option value="Reparación Técnica / Soporte">Servicio Técnico (Pantalla, Batería, etc)</option>
-                            <option value="Plan Canje de Equipo">Plan Canje (Entregar mi usado)</option>
-                            <option value="Otro">Otro Tipo de Consulta</option>
-                        </select>
+                    <div class="contact-detail">
+                        <div class="contact-detail-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <span><a href="https://wa.link/xebnz1" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">11 6888-4097</a></span>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="message">Detalles de tu Equipo (Modelo, GB, falla o lo que busques)</label>
-                        <textarea name="message" id="message" rows="4" class="form-control" placeholder="Ej: Tengo un iPhone 12 de 128GB para entregar, o busco presupuesto para cambio de batería de iPhone 11..." required></textarea>
-                    </div>
+                <div class="contact-form-wrap fade-in">
+                    <form id="cotizacionForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Ej: Juan Pérez" required>
+                        </div>
 
-                    <button type="submit" class="btn btn-submit">Enviar Cotización Directa</button>
-                </form>
+                        <div class="form-group">
+                            <label for="phone">Teléfono / WhatsApp</label>
+                            <input type="tel" name="phone" id="phone" class="form-control" placeholder="Ej: 11 6888-4097" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">¿Qué servicio necesitás?</label>
+                            <select name="subject" id="subject" class="form-control" required>
+                                <option value="" disabled selected>Seleccioná una opción</option>
+                                <option value="Comprar un iPhone">Comprar un iPhone</option>
+                                <option value="Servicio Técnico">Servicio Técnico</option>
+                                <option value="Plan Canje">Plan Canje</option>
+                                <option value="Otra Consulta">Otra Consulta</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Detalles (modelo, GB, falla o lo que busques)</label>
+                            <textarea name="message" id="message" class="form-control" placeholder="Ej: iPhone 12 de 128GB para canje, o presupuesto cambio de batería iPhone 11..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Enviar por WhatsApp</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 iPhone NF. Todos los derechos reservados.</p>
-            <p style="opacity: 0.5;">Conectamos tu mundo &bull; Diseñado con estilo Premium</p>
+            <div class="footer-inner">
+                <span class="footer-logo">iPhone NF</span>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <p class="footer-copy">&copy; 2026 iPhone NF. Todos los derechos reservados. Conectamos tu mundo.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/5491100000000?text=Hola%20iPhone%20NF!%20Quiero%20hacer%20una%20consulta%20sobre%20un%20servicio%20o%20equipo." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <svg fill="#ffffff" width="32px" height="32px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <a href="https://wa.link/xebnz1" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <svg fill="#ffffff" width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825.733 5.48 2.01 7.79l-2.01 7.345 7.513-1.972c2.242 1.192 4.795 1.837 7.487 1.837 8.837 0 16-7.163 16-16s-7.163-16-16-16zm7.79 22.112c-.318.897-1.575 1.637-2.522 1.842-.647.138-1.493.245-2.368-.035-.515-.165-1.168-.415-2.002-.765-3.535-1.478-5.818-5.078-5.995-5.312-.175-.235-1.425-1.898-1.425-3.623 0-1.725.9-2.573 1.22-2.925.318-.35.7-.437.933-.437.233 0 .467.003.668.012.21.01.492-.04.77.625.285.683.972 2.373 1.055 2.547.085.175.142.378.025.613-.117.235-.175.38-.348.582-.175.203-.365.453-.523.608-.175.173-.358.363-.155.712.203.348.903 1.49 1.938 2.41 1.328 1.183 2.453 1.552 2.803 1.725.352.173.558.145.767-.095.208-.242.9-1.047 1.142-1.407.242-.36.483-.298.813-.175.33.123 2.1.99 2.46 1.173.36.183.6.273.687.423.088.15.088.872-.23 1.77z"/>
         </svg>
     </a>
 
+    <script src="js/products.js"></script>
+    <script>
+        /* Navbar: efecto al scroll para reforzar jerarquía visual */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        /* Menú móvil accesible */
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            const open = navLinks.classList.toggle('open');
+            navToggle.classList.toggle('active', open);
+            navToggle.setAttribute('aria-expanded', open);
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        /* Animaciones fade-in al entrar en viewport */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        /* ── Catálogo: renderizado dinámico de ProductCard ── */
+        const PHONE_SVG = `<svg width="80" height="120" viewBox="0 0 80 120" fill="none" aria-hidden="true">
+            <rect x="8" y="4" width="64" height="112" rx="12" stroke="#1d1d1f" stroke-width="2"/>
+            <rect x="28" y="10" width="24" height="6" rx="3" fill="#1d1d1f"/>
+            <circle cx="40" cy="108" r="4" stroke="#86868b" stroke-width="1.5"/>
+        </svg>`;
+
+        function formatIphoneModel(versionLabel) {
+            const label = versionLabel.trim();
+            return label.startsWith('iPhone') ? label : `iPhone ${label}`;
+        }
+
+        function renderProductCard(product) {
+            const pills = product.versionLabels
+                .map(label => `<span class="product-version-pill" role="button" tabindex="0">${label}</span>`)
+                .join('');
+
+            const visual = product.images && product.images.length > 0
+                ? product.images.map(imgUrl =>
+                    `<img src="${imgUrl}" alt="${product.name}" loading="lazy">`
+                  ).join('')
+                : `<div class="product-visual-fallback">${PHONE_SVG}</div>`;
+
+            return `
+                <article class="product-card fade-in" role="listitem" tabindex="0"
+                    data-id="${product.id}" data-name="${product.name}"
+                    aria-label="${product.name}. ${product.tagline}">
+                    <div class="product-card-visual">${visual}</div>
+                    <span class="product-tag">${product.tag}</span>
+                    <h3>${product.name}</h3>
+                    <p class="product-versions-hint">Ver versiones disponibles</p>
+                    <div class="product-versions" aria-label="Variantes disponibles">${pills}</div>
+                    <p class="product-desc">${product.description}</p>
+                    <div class="product-card-footer">
+                        <p class="product-price">${product.priceFrom} <span>/ desde</span></p>
+                        <span class="product-card-cta" role="button" tabindex="0">Cotizar este modelo →</span>
+                    </div>
+                </article>`;
+        }
+
+        function initCatalog() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = PRODUCTS.map(renderProductCard).join('');
+            grid.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            grid.addEventListener('click', (e) => {
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+
+                const pill = e.target.closest('.product-version-pill');
+                if (pill) {
+                    selectProductForQuote(card.dataset.name, card.dataset.id, pill.textContent.trim(), false);
+                    return;
+                }
+
+                const cta = e.target.closest('.product-card-cta');
+                if (cta) {
+                    selectProductForQuote(card.dataset.name, card.dataset.id, null, true);
+                    return;
+                }
+
+                selectProductForQuote(card.dataset.name, card.dataset.id, null, false);
+            });
+
+            grid.addEventListener('keydown', (e) => {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+
+                const pill = e.target.closest('.product-version-pill');
+                if (pill) {
+                    e.preventDefault();
+                    const card = pill.closest('.product-card');
+                    selectProductForQuote(card.dataset.name, card.dataset.id, pill.textContent.trim(), false);
+                    return;
+                }
+
+                const cta = e.target.closest('.product-card-cta');
+                if (cta) {
+                    e.preventDefault();
+                    const card = cta.closest('.product-card');
+                    selectProductForQuote(card.dataset.name, card.dataset.id, null, true);
+                    return;
+                }
+
+                const card = e.target.closest('.product-card');
+                if (!card) return;
+                e.preventDefault();
+                selectProductForQuote(card.dataset.name, card.dataset.id, null, false);
+            });
+        }
+
+        function goToContactForm() {
+            location.hash = 'contacto';
+            document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectProductForQuote(name, id, specificVersion, isCtaClick) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            let detalle;
+
+            if (specificVersion) {
+                /* Caso A: versión específica (pill) */
+                const fullModel = formatIphoneModel(specificVersion);
+                detalle = `Hola! Me interesa obtener m\u00e1s informaci\u00f3n y cotizar el ${fullModel}.`;
+            } else if (isCtaClick) {
+                /* Caso B: CTA — abanico de versiones */
+                const versionsList = product.versionLabels.map(formatIphoneModel).join(', ');
+                detalle = `Hola! Quiero cotizar el ${name}. Me interesan sus versiones disponibles (${versionsList}).`;
+            } else {
+                /* Caso C: clic general — modelo base */
+                detalle = `Hola! Me interesa obtener m\u00e1s informaci\u00f3n sobre el ${name}.`;
+            }
+
+            sessionStorage.removeItem('cotizacionOtro');
+            sessionStorage.setItem('cotizacionModelo', name);
+            sessionStorage.setItem('cotizacionDetalle', detalle);
+
+            document.getElementById('subject').value = 'Comprar un iPhone';
+            document.getElementById('message').value = detalle;
+
+            goToContactForm();
+        }
+
+        function selectPlanCanje() {
+            const detalle = 'Hola! Me interesa acceder al Plan Canje. Mi objetivo es entregar mi equipo actual como parte de pago para actualizarme. \u00bfC\u00f3mo es el proceso de cotizaci\u00f3n?';
+
+            sessionStorage.removeItem('cotizacionModelo');
+            sessionStorage.removeItem('cotizacionOtro');
+            sessionStorage.setItem('cotizacionDetalle', detalle);
+
+            document.getElementById('subject').value = 'Plan Canje';
+            document.getElementById('message').value = detalle;
+
+            goToContactForm();
+        }
+
+        function initPlanCanje() {
+            document.querySelectorAll('.plan-canje-trigger').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    selectPlanCanje();
+                });
+                trigger.addEventListener('keydown', (e) => {
+                    if (e.key !== 'Enter' && e.key !== ' ') return;
+                    e.preventDefault();
+                    selectPlanCanje();
+                });
+            });
+        }
+
+        function selectOtherProductForQuote(productName) {
+            const detalle = `Hola! Me interesa recibir informaci\u00f3n y consultar disponibilidad sobre ${productName}`;
+
+            sessionStorage.removeItem('cotizacionModelo');
+            sessionStorage.setItem('cotizacionOtro', productName);
+            sessionStorage.setItem('cotizacionDetalle', detalle);
+
+            document.getElementById('subject').value = 'Otra Consulta';
+            document.getElementById('message').value = detalle;
+
+            goToContactForm();
+        }
+
+        function initOtherProducts() {
+            document.querySelectorAll('.other-product-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    selectOtherProductForQuote(link.dataset.product);
+                });
+            });
+        }
+
+        initCatalog();
+        initOtherProducts();
+        initPlanCanje();
+        initFormResetOnClickOutside();
+
+        /* Limpia formulario y sessionStorage al hacer clic fuera del formulario */
+        function resetCotizacionForm() {
+            document.getElementById('cotizacionForm').reset();
+            sessionStorage.removeItem('cotizacionDetalle');
+            sessionStorage.removeItem('cotizacionModelo');
+            sessionStorage.removeItem('cotizacionOtro');
+        }
+
+        function initFormResetOnClickOutside() {
+            const form = document.getElementById('cotizacionForm');
+            const formWrap = document.querySelector('.contact-form-wrap');
+
+            document.addEventListener('click', (e) => {
+                if (form.contains(e.target) || formWrap.contains(e.target)) return;
+
+                /* No resetear si el clic viene de un disparador que prellena el formulario */
+                if (e.target.closest('.product-card, .plan-canje-trigger, .other-product-link')) return;
+
+                resetCotizacionForm();
+            });
+        }
+
+        /* Cotización → WhatsApp con mensaje formateado */
+        const WHATSAPP_PHONE = '5491168884097';
+
+        /* Emojis vía code points: evita corrupción por encoding del archivo */
+        const emoji = {
+            wave:   String.fromCodePoint(0x1F44B),
+            user:   String.fromCodePoint(0x1F464),
+            phone:  String.fromCodePoint(0x1F4F1),
+            wrench: String.fromCodePoint(0x1F527),
+            memo:   String.fromCodePoint(0x1F4DD)
+        };
+
+        document.getElementById('cotizacionForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !phone || !subject || !message) return;
+
+            const text = [
+                `\u00a1Hola iPhone NF! ${emoji.wave}`,
+                '',
+                '*Solicitud de cotizaci\u00f3n*',
+                '',
+                `${emoji.user} *Nombre:* ${name}`,
+                `${emoji.phone} *Tel\u00e9fono:* ${phone}`,
+                `${emoji.wrench} *Servicio:* ${subject}`,
+                '',
+                `${emoji.memo} *Detalles:*`,
+                message,
+                '',
+                '\u00a1Gracias! Quedo atento/a a su respuesta.'
+            ].join('\n');
+
+            const url = 'https://api.whatsapp.com/send?phone=' + WHATSAPP_PHONE + '&text=' + encodeURIComponent(text);
+            window.open(url, '_blank', 'noopener,noreferrer');
+        });
+    </script>
 </body>
 </html>
